@@ -20,6 +20,9 @@ export default function Navbar() {
               Home
             </NavLink>
             {/* TODO: Add a NavLink to /directory */}
+            <NavLink to = "/directory" className = {linkClass}>
+              Directory
+            </NavLink>
           </div>
         </div>
       </div>

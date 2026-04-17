@@ -1,19 +1,25 @@
 // TODO: Import useState from react
+import { useState } from "react";
 // TODO: Import updateEmployee from ../api/employees
+import { updateEmployee } from "../api/employees";
 
 interface StatusToggleProps {
   employee: Employee;
-  onToggle: () => void;
+  onToggle: (updated: Employee) => void;
 }
 
 export default function StatusToggle({ employee, onToggle }: StatusToggleProps) {
   // TODO: Add a loading state to disable the button while the request is in progress
   //   const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleClick = async () => {
     // TODO: Call updateEmployee to toggle the active status
+    setLoading(true)
+    const res = await updateEmployee(employee.id, { active : !employee.active});
     // TODO: Call onToggle with the updated employee once the request succeeds
-    onToggle();
+    onToggle(res.data);
+    setLoading(false)
   };
 
   return (
